@@ -1,0 +1,16 @@
+[
+{
+  "modid": "expplus",
+  "name": "Exp Plus",
+  "description": "Exp generator and trader!",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["Tobias Faller"],
+  "credits": "",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
