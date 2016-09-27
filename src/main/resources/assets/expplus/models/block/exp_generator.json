@@ -1,0 +1,6 @@
+{
+    "parent": "block/cross",
+    "textures": {
+        "cross": "expplus:blocks/exp_flower"
+    }
+}

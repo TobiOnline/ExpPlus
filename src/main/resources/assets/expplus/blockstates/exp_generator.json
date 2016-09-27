@@ -1,0 +1,5 @@
+{
+    "variants": {
+        "normal": { "model": "expplus:exp_generator" }
+    }
+}
