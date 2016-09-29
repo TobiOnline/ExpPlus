@@ -1,4 +1,4 @@
-package org.tpc.expplus.common.world.generator;
+package org.tpc.expplus.common.generator;
 
 import static net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.FLOWERS;
 

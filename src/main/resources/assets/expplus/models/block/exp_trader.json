@@ -1,0 +1,9 @@
+{
+    "parent": "block/half_slab",
+    "textures": {
+    	"particle": "expplus:blocks/exp_trader/exp_trader_break",
+        "top": "expplus:blocks/exp_trader/exp_trader_top",
+        "bottom": "expplus:blocks/exp_trader/exp_trader_bottom",
+        "side": "expplus:blocks/exp_trader/exp_trader_side"
+    }
+}

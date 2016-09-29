@@ -1,2 +1,9 @@
 item.exp_flower.name=Exp-Flower
+item.exp_trader.name=Exp-Trader
+
 tile.exp_flower.name=Exp-Flower
+tile.exp_trader.name=Exp-Trader
+
+container.exp_trader=Exp-Trader
+
+message.in_use=This object is currently in use by $1!

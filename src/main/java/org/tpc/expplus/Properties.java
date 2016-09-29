@@ -1,64 +1,41 @@
 package org.tpc.expplus;
 
-import java.io.File;
-
 import net.minecraft.util.ResourceLocation;
 
 public class Properties {
 
 	public static final String MOD_ID = "expplus";
 	public static final String MOD_NAME = "Exp Plus";
-	public static final String VERSION = "0.1";
+	public static final String MOD_VERSION = "0.1";
+	public static final String RESOURCE_DOMAIN = MOD_ID;
 
-	public static final File DATA_DIRECTORY = new File("org/tpc/expplus/");
+	public static final String RESOURCE_PREFIX_TEXTURES = "textures/";
+	public static final String RESOURCE_PREFIX_GUI = RESOURCE_PREFIX_TEXTURES + "gui/";
+	public static final String RESOURCE_PREFIX_BLOCK = RESOURCE_PREFIX_TEXTURES + "blocks/";
+	public static final String RESOURCE_PREFIX_MODEL = "block/";
 
 	public static boolean DEBUG_MODE = true;
 
-	public static final String RESOURCE_DOMAIN = "expplus";
+	public static int DEFAULT_EXPFLOWER_GENERATION = 16;
+	public static int DEFAULT_EXPFLOWER_GROUP = 8;
+	public static int DEFAULT_EXPFLOWER_MAXDROP = 3;
 
-	public static final String PATH_TEXTURES = "textures/";
-	public static final String PATH_BLOCKS = PATH_TEXTURES + "blocks/";
-	public static final String PATH_GUI = PATH_TEXTURES + "gui/";
-	public static final String PATH_ITEMS = PATH_TEXTURES + "items/";
+	public static String NAME_EXPFLOWER = "exp_flower";
+	public static String NAME_EXPTRADER = "exp_trader";
+	public static String NAME_EXPTRADER_TOP = NAME_EXPTRADER + "_top";
 
-	public static int EXPFLOWER_GENERATION = 16;
-	public static int EXPFLOWER_GROUP = 8;
-	public static int EXPFLOWER_MAXDROP = 3;
+	public static final int GUI_ID_EXPTRADER = 0x01;
 
-//	public static int EXPTRADER_ID = 2209;
-//	public static int EXPGENERATOR_ID = 2210;
-//	public static int EXPFLOWER_ID = 2211;
+	public static final ResourceLocation RESOURCE_BLOCK_EXPFLOWER = new ResourceLocation(RESOURCE_DOMAIN,
+			NAME_EXPFLOWER);
+	public static final ResourceLocation RESOURCE_BLOCK_EXPTRADER = new ResourceLocation(RESOURCE_DOMAIN,
+			NAME_EXPTRADER);
 
-	public static String EXPFLOWER_NAME = "exp_flower";
-//	public static String EXPTRADER_NAME = "ExpTrader";
-//	public static String EXPGENERATOR_NAME = "ExpGenerator";
+	public static final ResourceLocation RESOURCE_MODEL_EXPTRADER_ANIMATION = new ResourceLocation(RESOURCE_DOMAIN,
+			NAME_EXPTRADER + "_animation");
 
-	// public static final int GUI_EXPTRADER = 0x01;
-	// public static final int GUI_EXPGENERATOR = 0x02;
-	
-	public static final ResourceLocation BLOCK_EXPFLOWER = new ResourceLocation(Properties.RESOURCE_DOMAIN,
-			Properties.EXPFLOWER_NAME);
+	public static final ResourceLocation RESOURCE_GUI_EXPTRADER = new ResourceLocation(RESOURCE_DOMAIN,
+			RESOURCE_PREFIX_GUI + NAME_EXPTRADER + ".png");
 
-	// public static final ResourceLocation TEXTURE_FONT = new
-	// ResourceLocation("font/default.png");
-
-	// public static final ResourceLocation TEXTURE_EXPTRADER = new
-	// ResourceLocation("expplus",
-	// PATH_BLOCKS + "ExpTrader.png");
-	// public static final ResourceLocation TEXTURE_EXPGENERATOR = new
-	// ResourceLocation("expplus",
-	// PATH_BLOCKS + "ExpGenerator.png");
-	//
-	// public static final ResourceLocation TEXTURE_EXPTRADER_GUI = new
-	// ResourceLocation("expplus",
-	// PATH_GUI + "ExpTrader.png");
-	// public static final ResourceLocation TEXTURE_EXPGENERATOR_GUI = new
-	// ResourceLocation("expplus",
-	// PATH_GUI + "ExpGenerator.png");
-
-	// public static final ResourceLocation TEXTURE_EXPTRADER_ANIMATION = new
-	// ResourceLocation("expplus",
-	// PATH_BLOCKS + "ExpTraderAnimation.png");
-
-
+	public static final String MESSAGE_IN_USE = "message.in_use";
 }

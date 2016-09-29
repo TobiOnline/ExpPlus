@@ -3,7 +3,7 @@ package org.tpc.expplus.common.block;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.tpc.expplus.ExpPlusMod;
+import org.tpc.expplus.ExpPlus;
 import org.tpc.expplus.Properties;
 
 import net.minecraft.block.BlockBush;
@@ -21,19 +21,16 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IShearable;
 
-import static org.tpc.expplus.ExpPlusMod.DEBUG;
+import static org.tpc.expplus.ExpPlus.DEBUG;
 
 public class BlockExpFlower extends BlockBush implements IShearable {
 
-	protected static final AxisAlignedBB TALL_GRASS_AABB = new AxisAlignedBB(0.09999999403953552D, 0.0D,
-			0.09999999403953552D, 0.8999999761581421D, 0.800000011920929D, 0.8999999761581421D);
+	protected static final AxisAlignedBB TALL_GRASS_AABB = new AxisAlignedBB(0.1D, 0.0D, 0.1D, 0.9D, 0.8D, 0.9D);
 
 	public BlockExpFlower() {
-		super();
-
 		setCreativeTab(CreativeTabs.DECORATIONS);
-		setRegistryName(Properties.BLOCK_EXPFLOWER);
-		setUnlocalizedName(Properties.EXPFLOWER_NAME);
+		setRegistryName(Properties.RESOURCE_BLOCK_EXPFLOWER);
+		setUnlocalizedName(Properties.NAME_EXPFLOWER);
 		setSoundType(SoundType.PLANT);
 	}
 
@@ -48,8 +45,8 @@ public class BlockExpFlower extends BlockBush implements IShearable {
 			return;
 
 		// 1 to max-drop
-		int experience = ExpPlusMod.RANDOM.nextInt(Properties.EXPFLOWER_MAXDROP) + 1;
-		
+		int experience = ExpPlus.RANDOM.nextInt(Properties.DEFAULT_EXPFLOWER_MAXDROP) + 1;
+
 		DEBUG("Dropping " + experience + " Experience from ExpFlower!");
 
 		while (experience > 0) {
@@ -73,7 +70,7 @@ public class BlockExpFlower extends BlockBush implements IShearable {
 
 		return stack;
 	}
-	
+
 	@Override
 	public boolean canHarvestBlock(IBlockAccess world, BlockPos pos, EntityPlayer player) {
 		return false;

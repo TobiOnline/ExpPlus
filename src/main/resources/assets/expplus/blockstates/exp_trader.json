@@ -1,0 +1,6 @@
+{
+    "variants": {
+        "normal": { "model": "expplus:exp_trader" },
+        "inventory": { "model": "expplus:exp_trader" }
+    }
+}
