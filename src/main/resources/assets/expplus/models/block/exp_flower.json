@@ -1,7 +1,7 @@
 {
-    "parent": "block/cross",
-    "textures": {
-    	"particle": "minecraft:blocks/double_plant_grass_bottom",
-        "cross": "expplus:blocks/exp_flower"
-    }
+  "parent": "block/cross",
+  "textures": {
+    "particle": "minecraft:blocks/double_plant_grass_bottom",
+    "cross": "expplus:blocks/exp_flower"
+  }
 }

@@ -8,16 +8,14 @@ import org.tpc.expplus.common.tile.TileExpTrader;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.ItemModelMesher;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraftforge.client.event.ModelBakeEvent;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 
 public class ClientProxy extends CommonProxy {
 
+	@SuppressWarnings("unused")
 	private TileRenderExpTrader tileRenderExpTrader;
 	
-	public ClientProxy() {
-		super();
-	}
+	public ClientProxy() { }
 
 	@Override
 	public void register() {
@@ -34,8 +32,5 @@ public class ClientProxy extends CommonProxy {
 	}
 	
 	@Override
-	public void onModelBake(ModelBakeEvent event) {
-		tileRenderExpTrader.init();
-		// Need a method to pre-load a model without a block state
-	}
+	public void onPostInit() { }
 }

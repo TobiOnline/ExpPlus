@@ -1,0 +1,9 @@
+{
+  "parent": "block/half_slab",
+  "textures": {
+    "particle": "expplus:blocks/exp_generator/exp_generator_break",
+    "top": "expplus:blocks/exp_generator/exp_generator_top",
+    "bottom": "minecraft:blocks/obsidian",
+    "side": "expplus:blocks/exp_generator/exp_generator_side"
+  }
+}

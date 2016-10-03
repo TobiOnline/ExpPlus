@@ -22,7 +22,6 @@ public class Properties {
 
 	public static String NAME_EXPFLOWER = "exp_flower";
 	public static String NAME_EXPTRADER = "exp_trader";
-	public static String NAME_EXPTRADER_TOP = NAME_EXPTRADER + "_top";
 
 	public static final int GUI_ID_EXPTRADER = 0x01;
 
@@ -31,8 +30,8 @@ public class Properties {
 	public static final ResourceLocation RESOURCE_BLOCK_EXPTRADER = new ResourceLocation(RESOURCE_DOMAIN,
 			NAME_EXPTRADER);
 
-	public static final ResourceLocation RESOURCE_MODEL_EXPTRADER_ANIMATION = new ResourceLocation(RESOURCE_DOMAIN,
-			NAME_EXPTRADER + "_animation");
+	public static final ResourceLocation RESOURCE_TEXURE_ANIMATIONS = new ResourceLocation(RESOURCE_DOMAIN,
+			RESOURCE_PREFIX_BLOCK + "animations.png");
 
 	public static final ResourceLocation RESOURCE_GUI_EXPTRADER = new ResourceLocation(RESOURCE_DOMAIN,
 			RESOURCE_PREFIX_GUI + NAME_EXPTRADER + ".png");

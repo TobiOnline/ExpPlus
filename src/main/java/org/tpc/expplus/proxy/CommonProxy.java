@@ -13,7 +13,6 @@ import org.tpc.expplus.common.tile.TileExpTrader;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.client.event.ModelBakeEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
@@ -48,5 +47,5 @@ public class CommonProxy {
 		NetworkRegistry.INSTANCE.registerGuiHandler(ExpPlus.instance, new GuiHandler());
 	}
 
-	public void onModelBake(ModelBakeEvent event) { }
+	public void onPostInit() { }
 }
