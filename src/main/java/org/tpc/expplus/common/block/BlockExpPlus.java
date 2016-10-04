@@ -1,6 +1,5 @@
 package org.tpc.expplus.common.block;
 
-import org.tpc.expplus.ExpPlus;
 import org.tpc.expplus.common.tile.TileExpPlus;
 
 import net.minecraft.block.BlockContainer;
@@ -10,13 +9,12 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.item.EntityItem;
-import net.minecraft.entity.item.EntityXPOrb;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
@@ -32,11 +30,6 @@ public abstract class BlockExpPlus extends BlockContainer {
 		setCreativeTab(CreativeTabs.REDSTONE);
 		setSoundType(SoundType.STONE);
 		setHardness(10.0F);
-	}
-	
-	@Override
-	public float getExplosionResistance(Entity exploder) {
-		return 2000.0F;
 	}
 
 	@Override
@@ -70,12 +63,7 @@ public abstract class BlockExpPlus extends BlockContainer {
 
 		return false;
 	}
-
-	@Override
-	protected boolean canSilkHarvest() {
-		return false;
-	}
-
+	
 	@Override
 	public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer,
 			ItemStack stack) {
@@ -89,6 +77,43 @@ public abstract class BlockExpPlus extends BlockContainer {
 		((TileExpPlus) tile).setOwner(((EntityPlayer) placer).getUniqueID());
 		tile.markDirty();
 	}
+	
+	@Override
+	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn,
+			EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {
+		if (worldIn.isRemote)
+			return true;
+
+		// Drop through if the player is sneaking
+		return !playerIn.isSneaking();
+	}
+	
+	@Override
+	public void onBlockDestroyedByPlayer(World worldIn, BlockPos pos, IBlockState state) {
+		if (worldIn.isRemote)
+			return;
+		
+		TileEntity tile = worldIn.getTileEntity(pos);
+		if ((tile == null) || !(tile instanceof TileExpPlus))
+			return;
+		
+		TileExpPlus tileExpPlus = (TileExpPlus) tile;
+		IInventory inventory = tileExpPlus.getInventory();
+		for (int index = inventory.getFieldCount(); index >= 0; index--) {
+			ItemStack stack = inventory.getStackInSlot(index);
+			if ((stack == null) || (stack.getItem() == Item.getItemFromBlock(Blocks.AIR)))
+				continue;
+			
+			spawnAsEntity(worldIn, pos, stack);
+		}
+		
+		super.onBlockDestroyedByPlayer(worldIn, pos, state);
+	}
+
+	@Override
+	protected boolean canSilkHarvest() {
+		return false;
+	}
 
 	@Override
 	public boolean hasTileEntity(IBlockState state) {
@@ -101,17 +126,7 @@ public abstract class BlockExpPlus extends BlockContainer {
 	}
 	
 	@Override
-	public BlockRenderLayer getBlockLayer() {
-		return BlockRenderLayer.CUTOUT;
-	}
-	
-	@Override
 	public boolean isBlockNormalCube(IBlockState state) {
-		return false;
-	}
-	
-	@Override
-	public boolean isBlockSolid(IBlockAccess worldIn, BlockPos pos, EnumFacing side) {
 		return false;
 	}
 	
@@ -121,44 +136,7 @@ public abstract class BlockExpPlus extends BlockContainer {
 	}
 	
 	@Override
-	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn,
-			EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {
-		if (worldIn.isRemote)
-			return true;
-
-		// Drop through if the player is sneaking
-		return !playerIn.isSneaking();
-	}
-
-	public void dropExp(int experience, World world, BlockPos pos) {
-		while (experience > 0) {
-			int exp = EntityXPOrb.getXPSplit(experience);
-			experience -= exp;
-			world.spawnEntityInWorld(new EntityXPOrb(world, (double) pos.getX() + 0.5D, (double) pos.getY() + 0.75D,
-					(double) pos.getZ() + 0.5D, exp));
-		}
-	}
-
-	protected void dropItem(ItemStack item, World world, int x, int y, int z) {
-		if (world.isRemote)
-			return;
-
-		if ((item != null) && (item.stackSize > 0)) {
-			EntityItem entityItem = new EntityItem(world, x + (ExpPlus.RANDOM.nextFloat() * 0.8F) + 0.1F,
-					y + (ExpPlus.RANDOM.nextFloat() * 0.8F) + 0.1F,
-					z + (ExpPlus.RANDOM.nextFloat() * 0.8F) + 0.1F,
-					new ItemStack(item.getItem(), item.stackSize, item.getItemDamage()));
-
-			if (item.hasTagCompound()) {
-				entityItem.getEntityItem().setTagCompound((NBTTagCompound) item.getTagCompound().copy());
-			}
-
-			float factor = 0.05F;
-			entityItem.motionX = ExpPlus.RANDOM.nextGaussian() * factor;
-			entityItem.motionY = (ExpPlus.RANDOM.nextGaussian() * factor) + 0.2F;
-			entityItem.motionZ = ExpPlus.RANDOM.nextGaussian() * factor;
-			world.spawnEntityInWorld(entityItem);
-			item.stackSize = 0;
-		}
+	public float getExplosionResistance(Entity exploder) {
+		return 2000.0F;
 	}
 }

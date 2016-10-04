@@ -1,13 +1,12 @@
 package org.tpc.expplus.common.itemblock;
 
-import org.tpc.expplus.common.block.BlockExpTrader;
-
+import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemBlock;
 
 public class ItemBlockExpTrader extends ItemBlock {
 
-	public ItemBlockExpTrader(BlockExpTrader block) {
+	public ItemBlockExpTrader(Block block) {
 		super(block);
 
 		setCreativeTab(CreativeTabs.REDSTONE);

@@ -38,8 +38,7 @@ public class TileRenderExpTrader extends TileEntitySpecialRenderer<TileExpTrader
 			Properties.RESOURCE_BLOCK_EXPTRADER, "normal");
 	private static final ModelExpTraderAnimation animationModel = new ModelExpTraderAnimation();
 
-	public TileRenderExpTrader() {
-	}
+	public TileRenderExpTrader() { }
 
 	@Override
 	public void renderTileEntityAt(TileExpTrader tile, double x, double y, double z, float partialTicks,

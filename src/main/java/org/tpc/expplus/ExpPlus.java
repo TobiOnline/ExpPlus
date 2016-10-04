@@ -2,12 +2,11 @@ package org.tpc.expplus;
 
 import java.util.Random;
 
-import org.tpc.expplus.common.block.BlockExpFlower;
-import org.tpc.expplus.common.block.BlockExpTrader;
 import org.tpc.expplus.debug.DebugWindow;
 import org.tpc.expplus.debug.NBTTagDebug;
 import org.tpc.expplus.proxy.CommonProxy;
 
+import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.nbt.NBTBase;
 import net.minecraftforge.common.config.Configuration;
@@ -17,7 +16,6 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.Mod.Instance;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
 @Mod(modid = Properties.MOD_ID, version = Properties.MOD_VERSION, useMetadata = true)
@@ -25,11 +23,13 @@ public class ExpPlus {
 
 	public static final Random RANDOM = new Random(System.currentTimeMillis());
 
-	public static BlockExpFlower BLOCK_EXPFLOWER;
+	public static Block BLOCK_EXPFLOWER;
+	public static Block BLOCK_EXPTRADER;
+	public static Block BLOCK_EXPGENERATOR;
+	
 	public static ItemBlock ITEMBLOCK_EXPFLOWER;
-
-	public static BlockExpTrader BLOCK_EXPTRADER;
 	public static ItemBlock ITEMBLOCK_EXPTRADER;
+	public static ItemBlock ITEMBLOCK_EXPGENERATOR;
 
 	@SidedProxy(clientSide = "org.tpc.expplus.proxy.ClientProxy", serverSide = "org.tpc.expplus.proxy.CommonProxy")
 	public static CommonProxy proxy;
@@ -61,11 +61,6 @@ public class ExpPlus {
 	@EventHandler
 	public void onInit(FMLInitializationEvent event) {
 		proxy.register();
-	}
-
-	@EventHandler
-	public void onPostInit(FMLPostInitializationEvent event) {
-		proxy.onPostInit();
 	}
 
 	// --------------------------------------------------------------

@@ -88,4 +88,8 @@ public abstract class TileExpPlus extends TileEntity {
 	public boolean isOwner(EntityPlayer player) {
 		return ((owner == null) || owner.equals(player.getUniqueID())); 
 	}
+	
+	public IInventory getInventory() {
+		return inventory;
+	}
 }

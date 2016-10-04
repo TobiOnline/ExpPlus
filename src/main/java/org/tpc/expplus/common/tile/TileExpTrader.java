@@ -3,6 +3,7 @@ package org.tpc.expplus.common.tile;
 import java.util.UUID;
 
 import org.tpc.expplus.ExpPlus;
+import org.tpc.expplus.Properties;
 
 import net.minecraft.inventory.InventoryBasic;
 import net.minecraft.nbt.NBTTagCompound;
@@ -10,7 +11,8 @@ import net.minecraft.nbt.NBTTagCompound;
 public class TileExpTrader extends TileExpPlus {
 
 	private static final int INVENTORY_SIZE = 5;
-	
+
+	// Volatile data for animation
 	public float animation;
 	public float rotation;
 
@@ -20,20 +22,17 @@ public class TileExpTrader extends TileExpPlus {
 	// Direction
 	// To left: false
 	// To right: true
-	public boolean direction;
+	private boolean direction;
 	
-	public int ownerExperience;
-	public int tradeExperience;
+	private int ownerExperience;
+	private int tradeExperience;
 
 	public TileExpTrader() {
-		super(new InventoryBasic("container.exp_trader", false, INVENTORY_SIZE));
+		super(new InventoryBasic(Properties.CONTAINER_EXPTRADER, false, INVENTORY_SIZE));
+		
 		useLock = new Object();
 		
-		direction = false;
-		ownerExperience = 0;
-		
-		animation = 0.5F + ((float) ExpPlus.RANDOM.nextInt(2));
-		rotation = (float) (ExpPlus.RANDOM.nextFloat() * (Math.PI * 2.0F));
+		rotation = (float) (ExpPlus.RANDOM.nextFloat() * 360.0F);
 	}
 
 	@Override

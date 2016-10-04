@@ -4,12 +4,12 @@ import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemBlock;
 
-public class ItemBlockExpFlower extends ItemBlock {
+public class ItemBlockExpGenerator extends ItemBlock {
 
-	public ItemBlockExpFlower(Block block) {
+	public ItemBlockExpGenerator(Block block) {
 		super(block);
 
-		setCreativeTab(CreativeTabs.DECORATIONS);
+		setCreativeTab(CreativeTabs.REDSTONE);
 		setRegistryName(block.getRegistryName());
 		setUnlocalizedName(block.getUnlocalizedName());
 	}

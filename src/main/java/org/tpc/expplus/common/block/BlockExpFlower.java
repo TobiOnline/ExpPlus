@@ -10,7 +10,6 @@ import net.minecraft.block.BlockBush;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.item.EntityXPOrb;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -44,17 +43,9 @@ public class BlockExpFlower extends BlockBush implements IShearable {
 		if (worldIn.isRemote)
 			return;
 
-		// 1 to max-drop
 		int experience = ExpPlus.RANDOM.nextInt(Properties.DEFAULT_EXPFLOWER_MAXDROP) + 1;
-
 		DEBUG("Dropping " + experience + " Experience from ExpFlower!");
-
-		while (experience > 0) {
-			int exp = EntityXPOrb.getXPSplit(experience);
-			experience -= exp;
-			worldIn.spawnEntityInWorld(new EntityXPOrb(worldIn, (double) pos.getX() + 0.5D, (double) pos.getY() + 0.75D,
-					(double) pos.getZ() + 0.5D, exp));
-		}
+		dropXpOnBlockBreak(worldIn, pos, experience);
 	}
 
 	@Override
